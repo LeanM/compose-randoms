@@ -1,0 +1,69 @@
+version: '3'
+services:
+  numeros-express:
+    image: numeros-express
+    build:
+      context: ./ex
+      dockerfile: Dockerfile
+    container_name: numeros-express
+    ports:
+      - "4000:3000"
+    environment:
+      - NUMEX_HOST=numeros-express
+      - NUMEX_PORT=3000
+    restart: "no"
+    networks:
+      default:
+        aliases:
+          - numeros-express
+
+  numeros-php:
+    image: numeros-php
+    build:
+      context: ./ph
+      dockerfile: Dockerfile
+    container_name: numeros-php
+    ports:
+      - "4001:3000"
+    environment:
+      - NUMEX_HOST=numeros-php
+      - NUMEX_PORT=3000
+    restart: "no"
+    networks:
+      default:
+        aliases:
+          - numeros-php
+
+  numeros-python:
+    image: numeros-python
+    build:
+      dockerfile: Dockerfile
+      context: ./py\.venv
+    container_name: numeros-python
+    ports:
+      - "4002:5000"
+    environment:
+      - NUMEX_HOST=numeros-python
+      - NUMEX_PORT=5000
+    restart: "no"
+    networks:
+      default:
+        aliases:
+          - numeros-python
+
+  numeros-random:
+    image: numeros-random
+    build:
+      context: ./randoms
+      dockerfile: Dockerfile
+    container_name: numeros-random
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_NUMEX_HOST=numeros-express
+      - REACT_APP_NUMEX_PORT=3000
+      - REACT_APP_NUMPY_HOST=numeros-python
+      - REACT_APP_NUMPY_PORT=3000
+      - REACT_APP_NUMPH_HOST=numeros-php
+      - REACT_APP_NUMPH_PORT=3000
+    restart: "no"
