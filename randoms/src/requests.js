@@ -2,26 +2,17 @@
 const requests = [
   {
     url:
-      "http://" +
-      process.env.REACT_APP_NUMPH_HOST +
-      ":" +
-      process.env.REACT_APP_NUMPH_PORT,
+      process.env.REACT_APP_NUMPY_HOST + ":" + process.env.REACT_APP_NUMPY_PORT,
     color: "pink",
   },
   {
     url:
-      "http://" +
-      process.env.REACT_APP_NUMPH_HOST +
-      ":" +
-      process.env.REACT_APP_NUMPH_PORT,
+      process.env.REACT_APP_NUMPH_HOST + ":" + process.env.REACT_APP_NUMPH_PORT,
     color: "cyan",
   },
   {
     url:
-      "http://" +
-      process.env.REACT_APP_NUMEX_HOST +
-      ":" +
-      process.env.REACT_APP_NUMEX_PORT,
+      process.env.REACT_APP_NUMEX_HOST + ":" + process.env.REACT_APP_NUMEX_PORT,
     color: "yellow",
   },
 ];
