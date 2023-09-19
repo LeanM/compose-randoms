@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: num-py
+spec:
+  ports:
+    - port: 3003
+      targetPort: 3003
+  selector:
+    name: py-app-pod
+    app: demo-randoms-app

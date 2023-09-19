@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: py-deploy
+  labels:
+    name: py-deploy
+    app: demo-randoms-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: py-app-pod
+      app: demo-randoms-app
+  template:
+    metadata:
+      name: py-app-pod
+      labels:
+        name: py-app-pod
+        app: demo-randoms-app
+    spec:
+      containers:
+        - name: num-py
+          image: leanm/py:latest
+          ports:
+            - containerPort: 3003
+          env:
+            - name: NUMPY_PORT
+              value: "3003"

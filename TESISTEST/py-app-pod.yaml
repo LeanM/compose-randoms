@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: py-app-pod
+  labels:
+    name: py-app-pod
+    app: demo-randoms-app
+spec:
+  containers:
+    - name: num-py
+      image: leanm/py:latest
+      ports:
+        - containerPort: 3003
+      env:
+        - name: NUMPY_PORT
+          value: "3003"

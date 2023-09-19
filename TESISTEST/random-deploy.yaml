@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: random-deploy
+  labels:
+    name: random-deploy
+    app: demo-randoms-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: random-app-pod
+      app: demo-randoms-app
+  template:
+    metadata:
+      name: random-app-pod
+      labels:
+        name: random-app-pod
+        app: demo-randoms-app
+    spec:
+      containers:
+        - name: num-random
+          image: leanm/randoms:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: NUMRE_PORT
+              value: "3000"
