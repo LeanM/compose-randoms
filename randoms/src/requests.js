@@ -1,18 +1,18 @@
 // El objetivo es reemplazar esto por microservicios que oculten la fuente de datos.
 const requests = [
   {
-    url:
-      process.env.REACT_APP_NUMPY_HOST + ":" + process.env.REACT_APP_NUMPY_PORT,
+    url: "num-py.default.svc.cluster.local",
+    port: 3003,
     color: "pink",
   },
   {
-    url:
-      process.env.REACT_APP_NUMPH_HOST + ":" + process.env.REACT_APP_NUMPH_PORT,
+    url: "num-php.default.svc.cluster.local",
+    port: 3002,
     color: "cyan",
   },
   {
-    url:
-      process.env.REACT_APP_NUMEX_HOST + ":" + process.env.REACT_APP_NUMEX_PORT,
+    url: "num-ex.default.svc.cluster.local",
+    port: 3001,
     color: "yellow",
   },
 ];

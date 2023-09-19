@@ -22,8 +22,15 @@ function useInterval(callback, delay) {
   }, [delay]);
 }
 
-async function getNumero(url) {
-  let r = await axios.get(url);
+async function getNumero(url, port) {
+  //let r = await axios.get("http://" + url + ":" + port);
+  let r = fetch("http://" + url + ":" + port);
+  // fetchRes is the promise to resolve
+  // it by using.then() method
+  r.then((res) => res.json()).then((d) => {
+    console.log(d);
+  });
+
   return r.data;
 }
 
@@ -32,13 +39,14 @@ function FeedRandoms() {
   let indice = Math.floor(Math.random() * requests.length);
   let microservicio = requests[indice];
   let url = microservicio.url;
+  let port = microservicio.port;
   const estilo = {
     color: microservicio.color,
   };
 
   console.log(indice);
   useInterval(() => {
-    getNumero(url).then((response) => {
+    getNumero(url, port).then((response) => {
       setNumero(response);
     });
   }, 1000);
