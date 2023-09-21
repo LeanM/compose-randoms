@@ -22,9 +22,9 @@ function useInterval(callback, delay) {
   }, [delay]);
 }
 
-async function getNumero(url, port) {
+async function getNumero(micro) {
   //let r = await axios.get("http://" + url + ":" + port);
-  let r = fetch("http://" + url + ":" + port);
+  let r = fetch("http://127.0.0.1:32470" + micro);
   // fetchRes is the promise to resolve
   // it by using.then() method
   r.then((res) => res.json()).then((d) => {
@@ -38,15 +38,15 @@ function FeedRandoms() {
   const [numero, setNumero] = useState(0);
   let indice = Math.floor(Math.random() * requests.length);
   let microservicio = requests[indice];
-  let url = microservicio.url;
-  let port = microservicio.port;
+  let microservice = microservicio.micro;
+
   const estilo = {
     color: microservicio.color,
   };
 
   console.log(indice);
   useInterval(() => {
-    getNumero(url, port).then((response) => {
+    getNumero(micro).then((response) => {
       setNumero(response);
     });
   }, 1000);

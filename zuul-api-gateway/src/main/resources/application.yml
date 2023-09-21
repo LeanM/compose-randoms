@@ -1,0 +1,13 @@
+server:
+  port: 9999
+zuul:
+  routes:
+    php:
+      path: /php/**
+      url: http://num-php:3002/
+    express:
+      path: /express/**
+      url: http://num-ex:3001/
+    python:
+      path: /pyhton/**
+      url: http://num-py:3003
