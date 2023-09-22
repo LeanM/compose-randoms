@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: "zuul-api-gateway"
+  labels:
+    app: "zuul-api-gateway"
+spec:
+  ports:
+    - name: "http"
+      port: 9999
+      targetPort: 9999
+      nodePort: 32470
+  type: "NodePort"
+  selector:
+    app: "zuul-api-gateway"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "zuul-api-gateway"
+  labels:
+    app: "zuul-api-gateway"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "zuul-api-gateway"
+  template:
+    metadata:
+      labels:
+        app: "zuul-api-gateway"
+    spec:
+      containers:
+        - name: "zuul-api-gateway"
+          image: "leanm/zuul"
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 9999
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - random-app
+              topologyKey: "kubernetes.io/hostname"

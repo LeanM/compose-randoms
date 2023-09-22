@@ -24,7 +24,7 @@ function useInterval(callback, delay) {
 
 async function getNumero(micro) {
   //let r = await axios.get("http://" + url + ":" + port);
-  let r = fetch("http://127.0.0.1:32470" + micro);
+  let r = fetch("http://127.0.0.1:32470/" + micro);
   // fetchRes is the promise to resolve
   // it by using.then() method
   r.then((res) => res.json()).then((d) => {
@@ -46,7 +46,7 @@ function FeedRandoms() {
 
   console.log(indice);
   useInterval(() => {
-    getNumero(micro).then((response) => {
+    getNumero(microservice).then((response) => {
       setNumero(response);
     });
   }, 1000);

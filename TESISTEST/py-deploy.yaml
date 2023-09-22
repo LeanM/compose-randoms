@@ -1,22 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: py-deploy
+  name: py-app
   labels:
-    name: py-deploy
-    app: demo-randoms-app
+    app: py-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: py-app-pod
-      app: demo-randoms-app
+      app: py-app
   template:
     metadata:
-      name: py-app-pod
       labels:
-        name: py-app-pod
-        app: demo-randoms-app
+        app: py-app
     spec:
       containers:
         - name: num-py
@@ -26,3 +22,17 @@ spec:
           env:
             - name: NUMPY_PORT
               value: "3003"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: "py-app"
+  labels:
+    app: "py-app"
+spec:
+  ports:
+    - port: 3003
+      targetPort: 3003
+  selector:
+    app: "py-app"
