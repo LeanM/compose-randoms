@@ -4,10 +4,10 @@ zuul:
   routes:
     php:
       path: /php/**
-      url: http://php-app:3002/
+      url: http://php-app-service:3002/
     express:
       path: /express/**
-      url: http://ex-app:3001/
+      url: http://ex-app-service:3001/
     python:
       path: /python/**
-      url: http://py-app:3003
+      url: http://py-app-service:3003/
