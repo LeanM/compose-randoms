@@ -2,12 +2,15 @@ server:
   port: 9999
 zuul:
   routes:
-    php:
-      path: /php/**
-      url: http://php-app-service:3002/
-    express:
-      path: /express/**
-      url: http://ex-app-service:3001/
-    python:
-      path: /python/**
-      url: http://py-app-service:3003/
+    auth:
+      path: /auth/**
+      url: http://auth-service:8080/
+    search:
+      path: /search/**
+      url: http://search-service:8081/
+    review:
+      path: /review/**
+      url: http://review-service:8082/
+    matching:
+      path: /matching/**
+      url: http://matching-service:8083/
